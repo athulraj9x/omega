@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      # install npm
+      - npm install
+
+phases:
+  pre_build:
+    commands:
+      - rm -rf build
+
+  build:
+    commands:
+      - npm install
+      - npm run build
+
+artifacts:
+  files:
+    - public/**/*
+    - src/**/*
+    - appspec.yml
+    - scripts/**/*
+    - package-lock.json
+    - package.json

@@ -1,0 +1,252 @@
+.manageEve-card {
+  // background-color: #169c59;
+  background-color: #5497ee;
+  padding: 15px;
+}
+
+.bg-darkGreen {
+  border-radius: 7px 7px 0 0 !important;
+  background-color: #7367fd !important;
+}
+
+.volume-img {
+  width: 20px;
+  height: 20px;
+}
+
+.manageEve-card-text {
+  color: white;
+  margin: 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.right-row {
+  margin-left: 5px;
+}
+
+.dropDown-icon {
+  font-size: 30px;
+  color: white;
+  text-align: end;
+}
+
+.accordian-tab {
+  width: 100%;
+  padding: 2px 15px !important;
+}
+
+.live-tv-txt-right {
+  text-align: end;
+}
+
+.live-tv-txt-left {
+  text-align: initial;
+}
+
+.runner-default {
+  // width: 100%;
+  max-width: 80px;
+  min-width: 62px;
+  height: 55px;
+  background-color: #eef0f1;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.runner-back {
+  // width: 100%;
+  max-width: 80px;
+  min-width: 62px;
+  height: 55px;
+  background-color: #d9eeff;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.runner-lay {
+  // width: 100%;
+  max-width: 80px;
+  min-width: 62px;
+  height: 55px;
+  background-color: #fde5e4;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.runner-price {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.runner-size {
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.runner-name {
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color: gray;
+  margin-top: 3px;
+}
+
+.runner-p {
+  font-weight: 500;
+  margin-left: 5px;
+  color: rgb(0, 177, 0);
+}
+
+.runner-l {
+  font-weight: 500;
+  margin-left: 5px;
+  color: rgb(229, 0, 0);
+}
+
+.market-type {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 700;
+}
+
+.show-bets-btn {
+  background-color: #7ba8e275;
+  border: 1px solid #5497ee;
+  color: #2a71ce;
+
+  :hover {
+    background-color: #5497ee;
+    color: white;
+  }
+}
+
+.stake-amt {
+  position: absolute;
+  background-color: #eee;
+  width: initial;
+  right: 8px;
+  border-radius: 5px 5px 0 0;
+  bottom: 0;
+  font-size: 12px;
+}
+
+.show-count {
+  height: 19px;
+  background: #007bff;
+  color: white;
+}
+
+.table-text {
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  // color: #979b9e;
+  // :hover {
+  //   color: #636566;
+  // }
+}
+
+.table-txt-blue {
+  font-weight: 600;
+  // text-align: center;
+  color: #007bff;
+  white-space: nowrap;
+
+  :hover {
+    color: #0b56a7;
+  }
+}
+
+.link {
+  cursor: pointer;
+}
+
+.slide-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  padding: 3px 0px;
+  line-height: 0;
+  animation: button-flash 0.8s ease infinite;
+  background-color: #444;
+  color: #fff;
+  height: 60px;
+  width: 20px;
+  border-radius: 5px;
+  right: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delete-icon {
+  color: red;
+  margin-right: 5px;
+
+  :hover {
+    color: red;
+  }
+}
+
+.search-field {
+  border: round;
+  margin-right: 40px;
+}
+
+.bookView-h5 {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.bet-button {
+  padding: 5px 10px;
+  background-color: #7366ff !important;
+}
+
+/* Custom CSS for the sidebar */
+
+.t-button {
+  margin: 0rem -1rem;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  transition: all 1s;
+}
+
+.t-button.open {
+  margin: auto;
+  position: fixed;
+  right: 0;
+  top: 90%;
+  z-index: 2;
+  transition: all 1s;
+}
+
+
+.sidebar {
+  width: -webkit-fill-available;
+  position: absolute;
+  z-index: 2;
+  margin-left: 1000px;
+  transition: all 0.3s;
+}
+
+.sidebar.is-open {
+  margin-right: 5px;
+  margin-left: -5px;
+  transition: 0.3s;
+}

@@ -1,0 +1,49 @@
+/* Add appropriate styles for the skeleton loading */
+.widget-round.skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+
+  background-color: #ddd;
+  background: linear-gradient(to right, #f0f0f0 0%, #ddd 50%, #f0f0f0 100%);
+  /* Shimmer effect */
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+
+
+.skeleton-total {
+  width: 150px;
+  height: 20px;
+  background-color: #ddd;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f0f0f0 0%, #ddd 50%, #f0f0f0 100%);
+  /* Shimmer effect */
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-title {
+  width: 80px;
+  height: 20px;
+  background-color: #ddd;
+  margin-top: 5px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f0f0f0 0%, #ddd 50%, #f0f0f0 100%);
+  /* Shimmer effect */
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}

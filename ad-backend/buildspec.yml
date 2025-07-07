@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      # Install npm dependencies
+      - npm install
+
+  build:
+    commands:
+      # Include any additional build steps your application needs
+      # - npm run build  # Example: Compiling TypeScript or creating production bundles
+
+artifacts:
+  files:
+    - public/**/*
+    - src/**/*
+    - appspec.yml
+    - scripts/**/*
+    - package-lock.json
+    - package.json
+    - ./*

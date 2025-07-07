@@ -1,0 +1,22 @@
+.show-or-hide {
+  position: absolute;
+  top: 44px;
+  right: 20px;
+  transform: translateY(-50%);
+
+  span {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--theme-deafult);
+
+    &.show {
+      &:before {
+        content: "show";
+      }
+    }
+
+    &:before {
+      content: "hide";
+    }
+  }
+}

@@ -1,0 +1,111 @@
+.card-carousel {
+  overflow-x: scroll;
+  display: flex;
+  gap: 0.5rem;
+}
+.card-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.icon-style {
+  font-size: 40px;
+  color: white;
+}
+
+.card-bg {
+  background-color: #ededed;
+}
+
+.event-card-header {
+  padding: 20px 30px !important;
+}
+.event-card-body {
+  padding: 15px !important;
+}
+.event-sub-card-body {
+  padding: 0px 0px 0px 12px !important;
+}
+
+.toggle-text {
+  cursor: pointer;
+  padding: 0;
+}
+
+.league-table {
+  margin-top: 10px;
+  margin-left: 116px;
+}
+.event-table {
+  margin-top: 10px;
+  margin-left: 126px;
+}
+
+.accordian-btn {
+  padding: 2px 15px !important;
+}
+
+.accordian-radius-open {
+  border-radius: 10px 10px 0 0;
+}
+.accordian-radius-close {
+  border-radius: 10px 10px;
+}
+
+.events-h5 {
+  background-color: #f1efff;
+}
+
+.leagues-h5 {
+  background-color: #dfdcff;
+}
+.markets-h5 {
+  background-color: rgba(241, 239, 255, 0.3);
+  border-radius: 10px 10px;
+}
+
+.delete-col {
+  display: flex;
+}
+
+// l
+
+.checkbox-containers {
+  display: inline-block; // Adjust display as needed
+}
+
+.hidden-checkboxx {
+  position: absolute;
+  opacity: 0;
+}
+
+.custom-checkboxx {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #8a2be2; // Violet color
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  transition: border-color 0.3s ease-in-out;
+
+  .checkmarkx {
+    width: 12px;
+    height: 12px;
+    fill: transparent;
+    stroke: #8a2be2; // Violet color
+    stroke-width: 2;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.checkbox-containers:hover .custom-checkboxx {
+  border-color: #6c1a9c; // Adjust hover color as needed
+}
+
+.checkbox-containers .hidden-checkboxx:checked + .custom-checkboxx .checkmarkx {
+  transform: scaleX(1);
+}

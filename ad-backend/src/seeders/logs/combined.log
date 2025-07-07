@@ -1,0 +1,4 @@
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-07 19:04:45"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-07 19:04:45"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-07 19:04:53"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-07 19:04:53"}

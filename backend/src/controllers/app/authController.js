@@ -1,6 +1,4 @@
 const Transformer = require("object-transformer");
-const bcrypt = require("bcrypt");
-const uuid = require("uuid");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const Response = require("../../services/Response");
@@ -14,20 +12,14 @@ const {
   USER_WALLET,
   PROFILE_PIC,
 } = require("../../services/Constants");
-const { makeRandomNumber, AppName, forgotTemplate } = require("../../services/Helper");
-const Mailer = require("../../services/Mailer");
-const {
-  loginValidation,
-  logoutValidation,
-  forgotPasswordValidation,
-  resetPassValidation,
-} = require("../../services/UserValidation");
+const { makeRandomNumber } = require("../../services/Helper");
+// const Mailer = require("../../services/Mailer");
 const { Login } = require("../../transformers/user/userAuthTransformer");
-const { User, Otp, UserWallet } = require("../../models");
+const { User, Otp } = require("../../models");
 const { issueUser } = require("../../services/User_jwtToken");
-const { getIoInstance } = require("../../socket");
-const { mediaUrlForS3 } = require("../../services/s3Bucket");
 const formatUserData = require("../../services/formatUserData");
+const { forgotPasswordValidation, resetPasswordValidation, logoutAndBlockValidation } = require("../../services/AdminValidation");
+
 
 module.exports = {
   login: async (req, res) => {
@@ -325,7 +317,7 @@ module.exports = {
   resetPassword: async (req, res) => {
     try {
       const reqParam = req.body;
-      resetPassValidation(reqParam, res, async (validate) => {
+      resetPasswordValidation(reqParam, res, async (validate) => {
         if (validate) {
           const valid = await Otp.findOne({ otp: reqParam.otp }, { otp: 1, user_id: 1, code_expiry: 1 }).populate(
             "user_id",
@@ -368,7 +360,7 @@ module.exports = {
   logout: async (req, res) => {
     try {
       const requestParams = req.body;
-      logoutValidation(requestParams, res, async (validate) => {
+      logoutAndBlockValidation(requestParams, res, async (validate) => {
         if (validate) {
           let browser_ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
@@ -388,6 +380,144 @@ module.exports = {
       });
     } catch (error) {
       return Response.errorResponseWithoutData(res, res.locals.__("internalError"), INTERNAL_SERVER);
+    }
+  },
+
+  resendOtp: async (req, res) => {
+    try {
+      const requestParams = req.body;
+      resendEmailValidation(requestParams, res, async (validate) => {
+        if (validate) {
+          let user = await User.findOne({
+            email: requestParams.email
+          }, { _id: 1, first_name: 1, email: 1 });
+          if (user) {
+            var currentDate = new Date();
+            const system_ip = req.clientIp;
+            let browser_ip =
+              req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+
+            var otpTokenExpire = new Date(currentDate.getTime() + USER_MODEL.EMAIL_VERIFY_OTP_EXPIRY_MINUTE * 60000); // 10 minutes * 60000 ms/min
+            const otp = await makeRandomNumber(4);
+
+            const otpObj = {
+              user_id: user._id,
+              otp: otp,
+              code_expiry: otpTokenExpire,
+            };
+            await Otp.deleteMany({ user_id: user._id });
+            await Otp.create(otpObj);
+
+            await User.updateOne(
+              { _id: user?._id },
+              { $set: { "ip_address.system_ip": system_ip, "ip_address.browser_ip": browser_ip } }
+            );
+
+            let locals = {
+              first_name: user.first_name,
+              appName: AppName,
+              otp: otp
+            }
+
+            Mailer.sendMail(user.email, "resend otp", resendOtp, locals);
+
+            return Response.successResponseWithoutData(
+              res,
+              res.__('emailResend'),
+              SUCCESS
+            );
+          } else {
+            Response.errorResponseWithoutData(
+              res,
+              res.locals.__('emailNotExist'),
+              FAIL,
+            );
+          }
+        }
+      });
+    } catch (error) {
+      console.log("error", error);
+
+      return Response.errorResponseData(
+        res,
+        res.__('internalError'),
+        error
+      );
+    }
+  },
+
+  getUserName: async (req, res) => {
+    try {
+      const requestParams = req.query;
+      userNameValidation(requestParams, res, async (validate) => {
+        if (validate) {
+          let user = await User.findOne({
+            username: requestParams.username
+          }, { _id: 1, username: 1 });
+          if (user) {
+            return Response.successResponseWithoutData(
+              res,
+              res.__('userAlreadyExist'),
+              SUCCESS
+            );
+          } else {
+            Response.errorResponseWithoutData(
+              res,
+              res.locals.__('userNotExist'),
+              FAIL,
+            );
+          }
+        }
+      });
+    } catch (error) {
+      return Response.errorResponseData(
+        res,
+        res.__('internalError'),
+        error
+      );
+    }
+  },
+  getUserDetail: async (req, res) => {
+    try {
+      const requestParams = req.query;
+      userDetailValidation(requestParams, res, async (validate) => {
+        console.log(req.userData)
+        if (validate) {
+          const userId = req?.userData?._id
+          const validUserId = mongoose.isValidObjectId(userId)
+          console.log({ validUserId })
+          if (!validUserId) {
+            return Response.errorResponseWithoutData(
+              res,
+              INVALID_USER_ID,
+              BAD_REQUEST,
+              res.locals.__("failed"),
+            );
+          }
+
+          let user = await User.findOne({
+            _id: userId
+          }, { password: 0, password_text: 0, createdAt: 0, }).populate({
+            path: 'wallet_id',
+            select: "coin diamond"
+          });
+
+          let userData = formatUserData(user)
+
+          return Response.successResponseData(
+            res,
+            userData,
+            SUCCESS,
+            res.locals.__("success"),
+          );
+        }
+      });
+    } catch (error) {
+      return Response.errorResponseData(
+        res,
+        res.__('internalError'),
+        error
+      );
     }
   },
 };

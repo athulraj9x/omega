@@ -1,0 +1,36 @@
+.pagination-bdy {
+  display: flex;
+  justify-content: end;
+  gap: 7px;
+}
+
+.row-count-dropdown {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.row-count-select {
+  width: 54px;
+  height: 37px;
+  cursor: pointer !important;
+}
+
+.row-label {
+  white-space: nowrap;
+  margin-right: 3px;
+  margin-bottom: 0px;
+}
+
+.dropDown-icon {
+  color: gray;
+  font-weight: 400;
+  z-index: 0;
+}
+
+.icon-body {
+  position: absolute;
+  top: 5px;
+  right: -4px;
+  pointer-events: none;
+}
