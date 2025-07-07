@@ -68,6 +68,10 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Currency",
     },
+    addresses_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Address",
+    },
     wallet_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserWallet",
@@ -99,10 +103,27 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: ROLES.USER.level,
     },
+
   },
-  { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } } // Enable timestamps 
+  {
+    timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+  } // Enable timestamps 
 );
 // User
+
+userSchema.virtual('addresses', {
+  ref: 'Address',
+  localField: '_id',
+  foreignField: 'user'
+});
+
+userSchema.methods.getAddresses = async function () {
+  await this.populate('addresses');
+  return this.addresses;
+};
 
 const UserLoginHistory = mongoose.model("UserLoginHistory", loginHistorySchema);
 const User = mongoose.model("User", userSchema);
