@@ -336,16 +336,6 @@ export const protectedRoutes = [
       ManagerRoles.MONITORING_MANAGER,
     ],
   },
-  // {
-  //   path: "/betfairbalancechecker",
-  //   Component: <BetFairEngine />,
-  //   managerAccess: [
-  //     ManagerRoles.OPERATIONAL_MANAGER,
-  //     ManagerRoles.ACCOUNTS_MANAGER,
-  //     ManagerRoles.MANAGER,
-  //     ManagerRoles.MONITORING_MANAGER,
-  //   ],
-  // },
   {
     path: "/exposure",
     Component: <NewExposure />,
@@ -377,15 +367,4 @@ export const protectedRoutes = [
     Component: <WithdrawelCryptoPaymentRequestList />,
     managerAccess: [ManagerRoles.ACCOUNTS_MANAGER, ManagerRoles.OPERATIONAL_MANAGER, ManagerRoles.MONITORING_MANAGER],
   },
-
-  // CRYPTO TRANSATION
-  // {
-  //   path: "/crypto-deposit-list",
-  //   Component: <DepositList />,
-  //   managerAccess: [
-  //     ManagerRoles.ACCOUNTS_MANAGER,
-  //     ManagerRoles.OPERATIONAL_MANAGER,
-  //     ManagerRoles.MONITORING_MANAGER,
-  //   ],
-  // },
 ];
