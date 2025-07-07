@@ -1,0 +1,50 @@
+module.exports = {
+  LoginTransformer: {
+    userId: "admin._id",
+    name: "admin.name",
+    username: "admin.username",
+    role: "admin.role",
+    email: "admin.email",
+    mobileNo: "admin.mobileNo",
+    balance: "admin.balance",
+    currencyId: "admin.currencyId",
+    sportShares: "admin.sportShares",
+    betfairShare: "admin.betFairShare",
+    creditReference: "admin.creditReference",
+    alreadyExist: "alreadyExitList",
+    commission: "admin.commission",
+    isCommission: "admin.isCommission",
+    isLayerCommission: "admin.isLayerCommission",
+    TFA_Token:"admin.TFA_Token",
+    twoFactorMethod : "admin.twoFactorMethod",
+    twoFactorEnabled:"admin.twoFactorEnabled",
+    TFA_email:"admin.TFA_email",
+    layersBetAllow:"admin.layersBetAllow"
+    // twoFactorAuth: "twoFactorAuth.twoFactor_is_Enabled",
+    // socketData: "socketData", //NOW WE ARE NOT USING SOCKET 
+  },
+  Login: {
+    userId: "admin._id",
+    name: "admin.name",
+    username: "admin.username",
+    role: "admin.role",
+    email: "admin.email",
+    mobileNo: "admin.mobileNo",
+    balance: "admin.balance",
+    currencyId: "admin.currencyId",
+    sportShares: "admin.sportShares",
+    betfairShare: "admin.betFairShare",
+    creditReference: "admin.creditReference",
+    alreadyExist: "alreadyExitList",
+    commission: "admin.commission",
+    isCommission: "admin.isCommission",
+    isLayerCommission: "admin.isLayerCommission",
+    twoFactorMethod : "admin.twoFactorMethod",
+    twoFactorEnabled:"admin.twoFactorEnabled",
+    TFA_email:"admin.TFA_email",
+    layersBetAllow:"admin.layersBetAllow",
+  },
+};
+
+  
+

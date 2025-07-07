@@ -1,0 +1,114 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #8e6fff;
+  --color-primary-light: #FF8E8E;
+  --color-primary-dark: #E64C4C;
+
+  /* Secondary Colors */
+  --color-secondary: #4ECDC4;
+  --color-secondary-light: #6ED7D0;
+  --color-secondary-dark: #2EB3A9;
+
+  /* Neutral Colors */
+  --color-background: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-text: #2D3436;
+  --color-text-light: #636E72;
+  --color-border: #DFE6E9;
+
+  /* Accent Colors */
+  --color-accent-1: #FFE66D;
+  --color-accent-2: #1A535C;
+  --color-accent-3: #FF9F1C;
+
+  /* Status Colors */
+  --color-success: #2ECC71;
+  --color-warning: #F1C40F;
+  --color-error: #E74C3C;
+  --color-info: #3498DB;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+}
+
+/* Override existing styles */
+.gi-header .header-logo h1 {
+  color: var(--color-primary) !important;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Utility Classes */
+.bg-primary { background-color: var(--color-primary) !important; }
+.bg-secondary { background-color: var(--color-secondary) !important; }
+.bg-surface { background-color: var(--color-surface) !important; }
+
+.text-primary { color: var(--color-primary) !important; }
+.text-secondary { color: var(--color-secondary) !important; }
+.text-light { color: var(--color-text-light) !important; }
+
+.border-primary { border-color: var(--color-primary) !important; }
+.border-secondary { border-color: var(--color-secondary) !important; }
+
+/* Hover States */
+.hover-primary:hover { 
+  background-color: var(--color-primary-dark) !important;
+  color: var(--color-background) !important;
+}
+
+.hover-secondary:hover {
+  background-color: var(--color-secondary-dark) !important;
+  color: var(--color-background) !important;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-background) !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary) !important;
+  color: var(--color-background) !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark) !important;
+}
+
+/* Override existing button styles */
+.gi-header-btn {
+  color: var(--color-primary) !important;
+}
+
+.gi-header-btn:hover {
+  color: var(--color-primary-dark) !important;
+}
+
+/* Override existing text colors */
+.gi-header .header-top-message {
+  color: var(--color-text) !important;
+}
+
+/* Override existing background colors */
+.gi-header {
+  background-color: var(--color-background) !important;
+}
+
+/* Override existing border colors */
+.gi-header .header-top {
+  border-bottom: 1px solid var(--color-border) !important;
+} 

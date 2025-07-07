@@ -1,0 +1,86 @@
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:42:27"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:42:27"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:52:55"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:52:55"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:54:13"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:54:13"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:54:40"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:54:40"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:55:00"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:55:01"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:55:43"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:55:43"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:56:33"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:56:33"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:58:19"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:58:19"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:58:35"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:58:35"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:58:38"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:58:38"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:58:51"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:58:51"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:59:12"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:59:12"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:59:33"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:59:33"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:59:34"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:59:34"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 12:59:44"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 12:59:44"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:00:00"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:00:01"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:00:17"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:00:17"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:00:22"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:00:22"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:03:41"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:03:41"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:03:53"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:03:53"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:06:21"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:06:21"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:07:26"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:07:26"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:07:58"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:07:58"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:09:00"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:09:00"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:09:02"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:09:02"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:09:05"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:09:05"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:09:21"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:09:21"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:11:27"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:11:27"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:11:38"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:11:39"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 13:11:40"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 13:11:40"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:39:13"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:39:13"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:06"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:06"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:12"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:12"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:16"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:16"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:22"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:22"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:37"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:38"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:40:52"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:40:52"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:41:13"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:41:13"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:41:16"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:41:16"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:42:34"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:42:34"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:43:04"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:43:04"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-05 15:43:36"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-05 15:43:36"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::mongodb://0.0.0.0:27017/local","service":"backend","timestamp":"2025-07-07 11:07:19"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-07 11:07:19"}
