@@ -98,6 +98,7 @@ module.exports = {
       email: Joi.string().email().trim().required(),
       mobile_no: Joi.string().trim().max(15).required(),
       device_code: Joi.string().trim().required(),
+      currency_code: Joi.string().trim().required(),
     });
     const { error } = schema.validate(req);
     if (error) {

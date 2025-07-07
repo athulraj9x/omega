@@ -27,6 +27,7 @@ const { User, Otp, UserWallet } = require("../../models");
 const { issueUser } = require("../../services/User_jwtToken");
 const { getIoInstance } = require("../../socket");
 const { mediaUrlForS3 } = require("../../services/s3Bucket");
+const formatUserData = require("../../services/formatUserData");
 
 module.exports = {
   login: async (req, res) => {
@@ -40,153 +41,155 @@ module.exports = {
           let browser_ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
           const system_ip = req.clientIp;
 
-          if (requestParams.login_type === "google") {
-            console.log("google login");
-            // Google Login Flow
-            if (!requestParams.google_id_token) {
-              return Response.errorResponseWithoutData(res, "GoogleIDtokenIsRequired", FAIL);
-            }
+          // if (requestParams.login_type === "google") {
+          //   console.log("google login");
+          //   // Google Login Flow
+          //   if (!requestParams.google_id_token) {
+          //     return Response.errorResponseWithoutData(res, "GoogleIDtokenIsRequired", FAIL);
+          //   }
 
-            // Verify Google token
-            const ticket = await client.verifyIdToken({
-              idToken: requestParams.google_id_token,
-              audience: process.env.GOOGLE_CLIENT_ID,
-            });
+          //   // Verify Google token
+          //   const ticket = await client.verifyIdToken({
+          //     idToken: requestParams.google_id_token,
+          //     audience: process.env.GOOGLE_CLIENT_ID,
+          //   });
 
-            const payload = ticket.getPayload();
-            const googleEmail = payload.email;
-            const googlePicture = payload.picture;
+          //   const payload = ticket.getPayload();
+          //   const googleEmail = payload.email;
+          //   const googlePicture = payload.picture;
 
-            // Find or create the user in the database
-            user = await User.findOne({ email: googleEmail });
-            if (!user) {
-              user = await User.create({
-                device_code: requestParams.device_code,
-                email: googleEmail,
-                username: payload.name,
-                google_pic: googlePicture,
-                email_verify: new Date(),
-                google_id: payload.sub,
-                status: ACTIVE,
-              });
+          //   // Find or create the user in the database
+          //   user = await User.findOne({ email: googleEmail });
+          //   if (!user) {
+          //     user = await User.create({
+          //       device_code: requestParams.device_code,
+          //       email: googleEmail,
+          //       username: payload.name,
+          //       google_pic: googlePicture,
+          //       email_verify: new Date(),
+          //       google_id: payload.sub,
+          //       status: ACTIVE,
+          //     });
 
-              let userWallet = await UserWallet.create({
-                userId: user?._id,
-                coin: USER_WALLET.COIN,
-                diamond: USER_WALLET.DIAMOND,
-              });
+          //     let userWallet = await UserWallet.create({
+          //       userId: user?._id,
+          //       coin: USER_WALLET.COIN,
+          //       diamond: USER_WALLET.DIAMOND,
+          //     });
 
-              await User.updateOne(
-                { _id: user?._id },
-                {
-                  wallet_id: userWallet?._id,
-                }
-              );
-            }
-            const payloadIssue = {
-              id: user._id,
-            };
-            const token = issueUser(payloadIssue);
-            const meta = { token };
+          //     await User.updateOne(
+          //       { _id: user?._id },
+          //       {
+          //         wallet_id: userWallet?._id,
+          //       }
+          //     );
+          //   }
+          //   const payloadIssue = {
+          //     id: user._id,
+          //   };
+          //   const token = issueUser(payloadIssue);
+          //   const meta = { token };
 
-            tokenUpdate = {
-              $set: {
-                last_login: new Date(),
-                token: token,
-                "ip_address.system_ip": system_ip,
-                "ip_address.browser_ip": browser_ip,
-              },
-            };
+          //   tokenUpdate = {
+          //     $set: {
+          //       last_login: new Date(),
+          //       token: token,
+          //       "ip_address.system_ip": system_ip,
+          //       "ip_address.browser_ip": browser_ip,
+          //     },
+          //   };
 
-            await User.updateOne({ _id: user?._id }, tokenUpdate);
+          //   await User.updateOne({ _id: user?._id }, tokenUpdate);
 
-            let userData = {
-              id: user?._id,
-              username: user?.username,
-              profile_pic: user?.google_pic ? user?.google_pic : "",
-              name: user?.name,
-              email: user?.email,
-              mobileNo: user?.mobileNo,
-              guest_login: user?.guest_login,
-              device_code: user?.device_code,
-              status: user?.status,
-              createdAt: user?.createdAt,
-              updatedAt: user?.updatedAt,
-            };
+          //   let userData = {
+          //     id: user?._id,
+          //     username: user?.username,
+          //     profile_pic: user?.google_pic ? user?.google_pic : "",
+          //     name: user?.name,
+          //     email: user?.email,
+          //     mobileNo: user?.mobileNo,
+          //     guest_login: user?.guest_login,
+          //     device_code: user?.device_code,
+          //     status: user?.status,
+          //     createdAt: user?.createdAt,
+          //     updatedAt: user?.updatedAt,
+          //   };
 
-            return Response.successResponseData(
-              res,
-              new Transformer.Single(userData, Login).parse(),
-              SUCCESS,
-              res.locals.__("loginSucceeded"),
-              meta
-            );
-          } else if (requestParams.login_type === "guest_login") {
-            // Find or create the user in the database
-            user = await User.findOne({ guest_login: requestParams.device_code }).sort({ last_login: -1 });
-            // console.log({ user })
-            if (!user) {
-              let userUniqueName = "Guest";
-              let suffix = 1;
+          //   return Response.successResponseData(
+          //     res,
+          //     new Transformer.Single(userData, Login).parse(),
+          //     SUCCESS,
+          //     res.locals.__("loginSucceeded"),
+          //     meta
+          //   );
+          // } else if (requestParams.login_type === "guest_login") {
+          //   // Find or create the user in the database
+          //   user = await User.findOne({ guest_login: requestParams.device_code }).sort({ last_login: -1 });
+          //   // console.log({ user })
+          //   if (!user) {
+          //     let userUniqueName = "Guest";
+          //     let suffix = 1;
 
-              while (await User.findOne({ username: userUniqueName })) {
-                userUniqueName = `Guest_${Math.floor(Math.random() * 10000)}`;
-              }
-              user = await User.create({
-                guest_login: requestParams.device_code,
-                device_code: requestParams.device_code,
-                username: userUniqueName,
-                email_verify: new Date(),
-                status: ACTIVE,
-                is_guest: requestParams.login_type === "guest_login",
-              });
-              // console.log({ newUserCreated: user })
+          //     while (await User.findOne({ username: userUniqueName })) {
+          //       userUniqueName = `Guest_${Math.floor(Math.random() * 10000)}`;
+          //     }
+          //     user = await User.create({
+          //       guest_login: requestParams.device_code,
+          //       device_code: requestParams.device_code,
+          //       username: userUniqueName,
+          //       email_verify: new Date(),
+          //       status: ACTIVE,
+          //       is_guest: requestParams.login_type === "guest_login",
+          //     });
+          //     // console.log({ newUserCreated: user })
 
-              let userWallet = await UserWallet.create({
-                userId: user?._id,
-                coin: USER_WALLET.COIN,
-                diamond: USER_WALLET.DIAMOND,
-              });
-              // console.log({ userWallet: userWallet })
+          //     let userWallet = await UserWallet.create({
+          //       userId: user?._id,
+          //       coin: USER_WALLET.COIN,
+          //       diamond: USER_WALLET.DIAMOND,
+          //     });
+          //     // console.log({ userWallet: userWallet })
 
-              const updatedUser = await User.findOneAndUpdate(
-                { _id: user?._id },
-                {
-                  wallet_id: userWallet?._id,
-                }
-              );
-              // console.log({ updatedUser })
-            }
-            const payloadIssue = {
-              id: user._id,
-            };
-            // console.log({ payloadIssue })
-            const token = issueUser(payloadIssue);
-            const meta = { token };
-            // console.log({ token })
-            // console.log({ meta })
+          //     const updatedUser = await User.findOneAndUpdate(
+          //       { _id: user?._id },
+          //       {
+          //         wallet_id: userWallet?._id,
+          //       }
+          //     );
+          //     // console.log({ updatedUser })
+          //   }
+          //   const payloadIssue = {
+          //     id: user._id,
+          //   };
+          //   // console.log({ payloadIssue })
+          //   const token = issueUser(payloadIssue);
+          //   const meta = { token };
+          //   // console.log({ token })
+          //   // console.log({ meta })
 
-            tokenUpdate = {
-              $set: {
-                last_login: new Date(),
-                token: token,
-                "ip_address.system_ip": system_ip,
-                "ip_address.browser_ip": browser_ip,
-              },
-            };
+          //   tokenUpdate = {
+          //     $set: {
+          //       last_login: new Date(),
+          //       token: token,
+          //       "ip_address.system_ip": system_ip,
+          //       "ip_address.browser_ip": browser_ip,
+          //     },
+          //   };
 
-            // console.log({ tokenUpdate })
-            const updateToken = await User.updateOne({ _id: user?._id }, tokenUpdate);
-            // console.log({ updateToken })
+          //   // console.log({ tokenUpdate })
+          //   const updateToken = await User.updateOne({ _id: user?._id }, tokenUpdate);
+          //   // console.log({ updateToken })
 
-            return Response.successResponseData(
-              res,
-              new Transformer.Single(user, Login).parse(),
-              SUCCESS,
-              res.locals.__("loginSucceeded"),
-              meta
-            );
-          } else {
+          //   return Response.successResponseData(
+          //     res,
+          //     new Transformer.Single(user, Login).parse(),
+          //     SUCCESS,
+          //     res.locals.__("loginSucceeded"),
+          //     meta
+          //   );
+          // } else
+
+          {
             console.log("not google login");
             let isPassword = true;
             const filters = [];
@@ -245,21 +248,7 @@ module.exports = {
                     const updatedUser = await User.findOneAndUpdate({ _id: user?._id }, tokenUpdate, { new: true });
 
 
-                    let userData = {
-                      id: user?._id,
-                      username: user?.username,
-                      profile_pic: user?.profile_pic
-                        ? mediaUrlForS3(`${PROFILE_PIC}`, user?._id, user?.profile_pic)
-                        : "",
-                      name: user?.name,
-                      email: user?.email,
-                      mobileNo: user?.mobileNo,
-                      guest_login: user?.guest_login,
-                      device_code: user?.device_code,
-                      status: user?.status,
-                      createdAt: user?.createdAt,
-                      updatedAt: user?.updatedAt,
-                    };
+                    let userData = formatUserData(user)
 
                     return Response.successResponseData(
                       res,
@@ -280,7 +269,7 @@ module.exports = {
                 }
               }
             } else {
-              Response.errorResponseWithoutData(res, res.locals.__("userNameNotExist"), FAIL);
+              Response.errorResponseWithoutData(res, res.locals.__("userNotExist"), FAIL);
             }
           }
         }

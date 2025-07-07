@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ROLES } = require("../services/Constants");
 
 // Login history
 const loginHistorySchema = new mongoose.Schema(
@@ -23,11 +24,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       maxLength: 100,
     },
-    username: {
-      type: String,
-      required: true,
-      maxLength: 100,
-    },
     email: {
       type: String,
       maxLength: 100,
@@ -35,10 +31,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       maxLength: 100,
-    },
-    google_pic: {
-      type: String,
-      default: '',
     },
     profile_pic: {
       type: String,
@@ -56,11 +48,6 @@ const userSchema = new mongoose.Schema(
       type: Number,
       maxLength: 15,
     },
-    exit_attempt_count: {
-      type: Number,
-      maxLength: 4,
-      default: 0
-    },
     device_code: {
       type: String,
       maxLength: 100,
@@ -77,10 +64,6 @@ const userSchema = new mongoose.Schema(
     token: {
       type: String,
     },
-    is_guest: {
-      type: Boolean,
-      default: false,
-    },
     currency_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Currency",
@@ -88,12 +71,6 @@ const userSchema = new mongoose.Schema(
     wallet_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserWallet",
-    },
-    balance: {
-      type: Number,
-      required: false,
-      min: 0,
-      max: 200000000000,
     },
     ip_address: {
       system_ip: {
@@ -112,6 +89,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "0",
       enum: ["0", "1", "2", "3"], //0-inactive, 1- active, 2- deleted
+    },
+    role: {
+      type: String,
+      enum: Object.values(ROLES).map(r => r.name),
+      default: ROLES.USER.name,
+    },
+    roleLevel: {
+      type: Number,
+      default: ROLES.USER.level,
     },
   },
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } } // Enable timestamps 

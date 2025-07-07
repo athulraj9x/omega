@@ -27,6 +27,17 @@ module.exports = {
   S3_ENABLE: "true",
   PROFILE_PIC: "profilePicture",
 
-  INVALID_BALLS: ["nb", "wd"]
-
+  INVALID_BALLS: ["nb", "wd"],
+  CURRENCY_MAP: {
+    AED: { name: "United Arab Emirates Dirham", symbol: "د.إ" },
+    INR: { name: "Indian Rupee", symbol: "₹" },
+    USD: { name: "US Dollar", symbol: "$" },
+  },
+  ROLES: {
+    USER: { name: "user", level: 1 },
+    SALES_MANAGER: { name: "sales_manager", level: 2 },
+    PRODUCT_MANAGER: { name: "product_manager", level: 3 },
+    MARKETING_MANAGER: { name: "marketing_manager", level: 4 },
+    ADMIN: { name: "admin", level: 5 },
+  }
 };

@@ -4,8 +4,11 @@ const Response = require("../../services/Response");
 const { makeRandomNumber, AppName, userEmailVerification, resendOtp } = require("../../services/Helper");
 const Mailer = require("../../services/Mailer");
 const { userRegisterValidation, verifyEmailValidation, resendEmailValidation, userNameValidation, userDetailValidation } = require("../../services/UserValidation");
-const { User, Otp, UserWallet } = require("../../models");
-const { FAIL, INACTIVE, SUCCESS, INTERNAL_SERVER, ACTIVE, USER_MODEL, USER_WALLET } = require("../../services/Constants");
+const { User, Otp, UserWallet, Currency } = require("../../models");
+const { FAIL, INACTIVE, SUCCESS, INTERNAL_SERVER, ACTIVE, USER_MODEL, USER_WALLET, CURRENCY_MAP, ROLES } = require("../../services/Constants");
+const { Mongoose, default: mongoose } = require("mongoose");
+const { INVALID_USER_ID } = require("../../services/ResponseMessages");
+const formatUserData = require("../../services/formatUserData");
 
 module.exports = {
   userRegistration: async (req, res) => {
@@ -31,8 +34,12 @@ module.exports = {
               req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
             const pass = await bcrypt.hash(requestParams.password, 10);
+            const username = requestParams.username.toLowerCase();
+            const firstLetter = username[0].toUpperCase();
+            const profilePicUrl = `https://ui-avatars.com/api/?name=${firstLetter}&background=random&color=fff&size=128`;
 
-
+            const userRole = requestParams.role || ROLES.USER.name;
+            const roleData = Object.values(ROLES).find(r => r.name === userRole) || ROLES.USER;
             const UserObj = {
               first_name: requestParams.first_name,
               last_name: requestParams.last_name,
@@ -44,12 +51,29 @@ module.exports = {
               device_code: requestParams.device_code.toLowerCase(),
               "ip_address.system_ip": system_ip,
               "ip_address.browser_ip": browser_ip,
-              status: INACTIVE
+              status: INACTIVE,
+              profile_pic: profilePicUrl,
+              role: roleData.name,
+              roleLevel: roleData.level
             };
             console.log({ UserObj })
             let user = await User.create(UserObj);
 
-            let userWallet = await UserWallet.create({ userId: user?._id, coin: 50, diamond: 50 });
+
+            const currencyCode = requestParams.currency_code || "AED";
+            let currency = await Currency.findOne({ code: currencyCode });
+
+            if (!currency) {
+              const fallback = CURRENCY_MAP[currencyCode] || { name: currencyCode, symbol: currencyCode };
+              currency = await Currency.create({
+                code: currencyCode,
+                name: fallback.name,
+                symbol: fallback.symbol,
+              });
+            }
+
+
+            let userWallet = await UserWallet.create({ userId: user?._id, coin: 50, diamond: 50, balance: 0, currencyId: currency._id });
             console.log({ userWallet })
             await User.updateOne({ _id: user?._id }, {
               wallet_id: userWallet?._id
@@ -74,7 +98,7 @@ module.exports = {
               appName: AppName,
               otp: otp
             };
-
+            console.log({ locals })
             Mailer.sendMail(requestParams.email, "registration", userEmailVerification, locals);
 
             return Response.successResponseWithoutData(
@@ -272,14 +296,32 @@ module.exports = {
     try {
       const requestParams = req.query;
       userDetailValidation(requestParams, res, async (validate) => {
+        console.log(req.userData)
         if (validate) {
+          const userId = req?.userData?._id
+          const validUserId = mongoose.isValidObjectId(userId)
+          console.log({ validUserId })
+          if (!validUserId) {
+            return Response.errorResponseWithoutData(
+              res,
+              INVALID_USER_ID,
+              BAD_REQUEST,
+              res.locals.__("failed"),
+            );
+          }
+
           let user = await User.findOne({
-            _id: requestParams.user_id
-          }, { _id: 1 }).populate("wallet_id");
+            _id: userId
+          }, { password: 0, password_text: 0, createdAt: 0, }).populate({
+            path: 'wallet_id',
+            select: "coin diamond"
+          });
+
+          let userData = formatUserData(user)
 
           return Response.successResponseData(
             res,
-            user,
+            userData,
             SUCCESS,
             res.locals.__("success"),
           );

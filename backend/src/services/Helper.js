@@ -1,5 +1,5 @@
 module.exports = {
-  AppName: "Ludo",
+  AppName: "Omega",
   forgotTemplate: "forgotPassword",
   userEmailVerification: "userEmailVerification",
   resendOtp: "resendOtp",
